@@ -299,7 +299,7 @@ def handle_query_stream(req: QueryRequest, request: Request):
         client_ip = _get_client_ip(request)
         allowed, remaining, reason = _check_rate_limit(client_ip)
         if not allowed:
-            msg = "Service query limit reached for today. Please try again tomorrow." if reason == "global" else "Daily query limit reached. Please try again tomorrow."
+            msg = "Global query limit reached for today. Please try again tomorrow." if reason == "global" else f"You have reached the daily limit of {DAILY_QUERY_LIMIT} queries per IP. To continue, please use a different device, connect to a different network, or wait until tomorrow."
             return JSONResponse(
                 status_code=429,
                 content={"error": msg, "limit": DAILY_QUERY_LIMIT},
@@ -372,7 +372,7 @@ def handle_query(req: QueryRequest, request: Request):
         client_ip = _get_client_ip(request)
         allowed, remaining, reason = _check_rate_limit(client_ip)
         if not allowed:
-            msg = "Service query limit reached for today. Please try again tomorrow." if reason == "global" else "Daily query limit reached. Please try again tomorrow."
+            msg = "Global query limit reached for today. Please try again tomorrow." if reason == "global" else f"You have reached the daily limit of {DAILY_QUERY_LIMIT} queries. To continue, please use a different device, connect to a different network, or wait until tomorrow."
             return JSONResponse(
                 status_code=429,
                 content={"error": msg, "limit": DAILY_QUERY_LIMIT},

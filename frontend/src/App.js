@@ -472,7 +472,13 @@ export default function App(){
     if(stepTimerRef.current)clearInterval(stepTimerRef.current);
     try{
       const res=await fetch(`${BACKEND_URL}/query/stream`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({query:q})});
-      if(!res.ok)throw new Error(`Server responded with ${res.status}`);
+      if(!res.ok){
+        if(res.status===429){
+          const data=await res.json();
+          throw new Error(data.error||"You have reached the daily limit of 5 queries. To continue, please use a different device, connect to a different network, or wait until tomorrow.");
+        }
+        throw new Error(`Server responded with ${res.status}`);
+      }
       const reader=res.body.getReader(),decoder=new TextDecoder();
       let buffer="",stepsReceived=[];
       while(true){
