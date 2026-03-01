@@ -186,7 +186,7 @@ For detailed documentation, see:
 
 | Layer | Technology |
 |-------|-----------|
-| Frontend | React, Tailwind CSS |
+| Frontend | React, Custom CSS |
 | Backend | FastAPI, Python |
 | Database | PostgreSQL + pgvector |
 | Embeddings | OpenAI `text-embedding-3-small` (1536 dims) |
