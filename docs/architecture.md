@@ -73,7 +73,7 @@ graph TD
 
 ### Frontend (`frontend/src/App.js`)
 
-- **Framework**: React with Tailwind CSS
+- **Framework**: React with Custom CSS
 - **Communication**: Server-Sent Events (SSE) for streaming responses
 - **Features**: Real-time classification display, retrieval plan animation, confidence breakdown, source links to SEC EDGAR, cost tracking
 
