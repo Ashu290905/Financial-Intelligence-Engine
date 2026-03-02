@@ -27,3 +27,4 @@ Thumbs.db
 apple_financials/
 filing_sections/
 docs/decisions-and-challenges.md
+*.dump
