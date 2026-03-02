@@ -2,7 +2,7 @@
 
 > **Query SEC filings in plain English.** Structured XBRL data + vector search over filing narratives — answers in seconds, not hours.
 
-**Live Demo:**  ·
+**Click [here](https://finintel-phi.vercel.app/) for a live demo**  ·
 
 ## Why I Built This
 
