@@ -89,7 +89,6 @@ function findSourceUrl(text, sources) {
   if (!sources?.length) return null;
   const xm = text.match(/^(.+?)\s*\|\s*(\w+),\s*FY\s*(\d{4})/);
   if (xm) {
-    const concept=xm[1].trim().toLowerCase(), ticker=xm[2].toLowerCase(), year=xm[3];
     for (const s of sources) { const f=(s.filing||"").toLowerCase(); if(f.includes(ticker)&&f.includes(`fy ${year}`)&&s.filing_url)return s.filing_url; }
   }
   const lower=text.toLowerCase();
@@ -494,7 +493,9 @@ export default function App(){
           if(ev==="retrieval_plan"){
             stepsReceived=data.steps||[];setPlanSteps(stepsReceived);setActiveStep(0);
             let step=0;const ms=Math.max(800,Math.min(2000,8000/Math.max(stepsReceived.length,1)));
-            stepTimerRef.current=setInterval(()=>{step++;if(step<stepsReceived.length)setActiveStep(step);else clearInterval(stepTimerRef.current);},ms);
+            const captured=stepsReceived;
+            // eslint-disable-next-line no-loop-func
+            stepTimerRef.current=setInterval(()=>{step++;if(step<captured.length)setActiveStep(step);else clearInterval(stepTimerRef.current);},ms);
           }
           if(ev==="result"){if(stepTimerRef.current)clearInterval(stepTimerRef.current);setActiveStep(stepsReceived.length);setResult(data);if(data.cost?.total_cost)setSessionCost(p=>p+data.cost.total_cost);setLoading(false);}
           if(ev==="error"){if(stepTimerRef.current)clearInterval(stepTimerRef.current);setError(data.error||"An unknown error occurred");setLoading(false);}
