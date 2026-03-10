@@ -62,7 +62,7 @@ graph TD
     class L ml
     class N output
 
-    style caching fill:transparent,stroke:#475569,stroke-width:1px,stroke-dasharray:5 5
+    
     style classification fill:transparent,stroke:#475569,stroke-width:1px,stroke-dasharray:5 5
     style retrieval fill:transparent,stroke:#475569,stroke-width:1px,stroke-dasharray:5 5
     style data fill:transparent,stroke:#475569,stroke-width:1px,stroke-dasharray:5 5
